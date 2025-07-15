@@ -2,9 +2,10 @@
 #ifndef GRAPH_DEFENITION_ADJACENCY_LIST
 #define GRAPH_DEFENITION_ADJACENCY_LIST
 
-#include "graph.hpp"
-
 #ifndef EXCLUDE_THIS_FILE
+
+#include <iostream>
+#include "graph.hpp"
 // Debug macro
 #ifdef _DEBUG
 #define DEBUG_LOG(msg) std::cout << "DEBUG: " << msg << std::endl;

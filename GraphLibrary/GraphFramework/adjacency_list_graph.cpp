@@ -1,5 +1,5 @@
+// NOT YET IMPLEMENTED
 #include "pch.h"
-#include <iostream>
 #include "adjacency_list_graph.hpp"
 
 using namespace GraphLibrary;
@@ -45,7 +45,7 @@ void AdjacencyListGraph::removeEdge(int u, int v) {
 
 // Function to check if there is an edge from vertex u to vertex v
 bool AdjacencyListGraph::hasEdge(int u, int v) const {
-
+    return true;
 }
 
 // Function to print the adjacency matrix (for debugging purposes)
@@ -60,16 +60,17 @@ int AdjacencyListGraph::getNumVertices() const {
 
 // Getter for edge weight
 int AdjacencyListGraph::getEdgeWeight(int u, int v) const {
+    return 0;
 }
 
 // Getter for the adjacency matrix
 int** AdjacencyListGraph::getMatrix() const {
-
+    return NULL;
 }
 
 // Getter for the neighbor
 int* AdjacencyListGraph::getNeighbors(int vertex) const {
-
+    return NULL;
 }
 
 // Function to multiply the matrix by -1
@@ -79,5 +80,5 @@ void AdjacencyListGraph::multiplyByMinusOne() {
 
 // Get all edges in the graph
 std::vector<std::pair<int, int>> AdjacencyListGraph::getEdges() const {
-
+    return std::vector<std::pair<int, int>>{};
 }

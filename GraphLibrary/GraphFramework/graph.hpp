@@ -29,8 +29,6 @@ namespace GraphLibrary{
 
             virtual void addEdge(int node1, int node2, int weight = DEFAULT_WEIGHT) = 0;
             virtual void removeEdge(int node1, int node2) = 0;
-
-            virtual std::vector<std::pair<int, int>> getEdges() = 0;
             
             virtual bool hasEdge(int node1, int node2) const = 0;
 
@@ -40,6 +38,8 @@ namespace GraphLibrary{
             virtual int getNumVertices() const = 0;
             virtual void printMatrix() const = 0;
             virtual void multiplyByMinusOne() = 0;
+
+            virtual std::vector<std::pair<int, int>> getEdges() const = 0;
             // virtual int getNodeCount() const = 0;
             // virtual int getEdgeCount() const = 0;
     };

@@ -1,7 +1,7 @@
 #include "pch.h"  // Include the precompiled header file
 #include "debug.hpp"
 #include <iostream>
-#include "../include/graph/adjacency_matrix_graph.hpp"
+#include "../GraphFramework/adjacency_matrix_graph.hpp"
 using namespace GraphLibrary;
 
 void debugGraph(const AdjacencyMatrixGraph* graph) {

@@ -1,7 +1,7 @@
 #ifndef GRAPH_PLOTTER_HPP
 #define GRAPH_PLOTTER_HPP
 #ifndef EXCLUDE_THIS_FILE
-#include "../include/graph/adjacency_matrix_graph.hpp"
+#include "../GraphFramework/adjacency_matrix_graph.hpp"
 using namespace GraphLibrary;
 
 class GraphPlotter {

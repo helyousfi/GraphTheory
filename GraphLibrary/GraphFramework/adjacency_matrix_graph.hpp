@@ -11,11 +11,14 @@
 //
 // This implementation is part of a graph library designed to offer efficient graph operations and algorithms.
 // Given the performance requirements, this library is implemented in C++ for better speed and efficiency compared to higher-level languages like Python.
+
+
 #pragma once
 #ifndef ADJACENCY_MATRIX_GRAPH_DEFENITION_H
 #define ADJACENCY_MATRIX_GRAPH_DEFENITION_H
 
 #include <vector>
+#include <iostream>
 #include "graph.hpp"
 
 #define DEFAULT_WEIGHT 1
@@ -37,7 +40,8 @@
 namespace GraphLibrary {
     // Adjacency Matrix representation of a graph
     // Public Inheritence so that public and protected members retain their visibility
-    class GRAPH_LIBRARY_API AdjacencyMatrixGraph : public Graph {
+    class GRAPH_LIBRARY_API AdjacencyMatrixGraph : public Graph 
+    {
     private: 
         int **matrix;       // 2D array to store the adjacency matrix
         int numVertices;    // Number of vertices in the graph

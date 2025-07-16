@@ -1,3 +1,5 @@
+//  Tarjan’s Algorithm for finding bridges.
+
 #include "pch.h" 
 #include "graph.hpp" 
 #include "bridges.hpp" 

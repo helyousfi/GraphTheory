@@ -6,7 +6,7 @@
 using namespace GraphLibrary;
 int main()
 {
-    AdjacencyMatrixGraph* graph = new AdjacencyMatrixGraph(6, true);
+    AdjacencyMatrixGraph* graph = new AdjacencyMatrixGraph(6, false);
     graph->addEdge(0, 1);
     graph->addEdge(1, 2);
     graph->addEdge(2, 3);
@@ -16,12 +16,10 @@ int main()
     graph->addEdge(3, 4);
     graph->printMatrix();
 
-    TraversalAlgorithms::BFS(*graph, 0);
-
-#ifdef DEBUG
-    
-#endif // DEBUG
-
-
+    auto vector = TraversalAlgorithms::BFS(*graph, 0);
+    for (auto a : vector)
+    {
+        std::cout << a << std::endl;
+    }
     return 0;
 }

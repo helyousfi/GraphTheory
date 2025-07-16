@@ -4,11 +4,16 @@
 namespace GraphLibrary
 {
     // BFS implementation
-    void TraversalAlgorithms::BFS(
-        const AdjacencyMatrixGraph& graph, 
+    std::vector<int> TraversalAlgorithms::BFS(
+        const Graph& graph,
         int startVertex)
     {
+        std::vector<int> visitedOrder;
         int numVertices = graph.getNumVertices();
+        
+        if (startVertex < 0 || startVertex >= numVertices)
+            return visitedOrder; 
+
         std::vector<bool> visited(numVertices, false);
         std::queue<int> queue;
 
@@ -19,9 +24,12 @@ namespace GraphLibrary
         while (!queue.empty()) {
             // Dequeue a vertex from the queue
             int vertex = queue.front();
-            std::cout << vertex << " ";
             queue.pop();
 
+            visitedOrder.push_back(vertex);
+#ifdef DEBUG
+            std::cout << vertex << " ";
+#endif
             // Get the adjacency matrix
             int** matrix = graph.getMatrix();
 
@@ -33,25 +41,28 @@ namespace GraphLibrary
                 }
             }
         }
-        std::cout << std::endl;
+        return visitedOrder;
     }
 
     // DFS implementation
-    void TraversalAlgorithms::DFS(
-        const AdjacencyMatrixGraph& graph, 
+    std::vector<int> TraversalAlgorithms::DFS(
+        const Graph& graph,
         int startVertex) {
+        std::vector<int> visitedOrder;
         int numVertices = graph.getNumVertices();
         std::vector<bool> visited(numVertices, false);
     
         // Call the utility function for DFS
-        DFSUtil(graph, startVertex, visited);
+        DFSUtil(graph, startVertex, visited, visitedOrder);
+        return visitedOrder;
     }
 
     // Utility function for DFS
     void TraversalAlgorithms::DFSUtil(
-        const AdjacencyMatrixGraph& graph, 
+        const Graph& graph,
         int vertex, 
-        std::vector<bool>& visited) {
+        std::vector<bool>& visited,
+        std::vector<int> visitedOrder) {
         // Mark the current vertex as visited and print it
         visited[vertex] = true;
         std::cout << vertex << " ";
@@ -61,9 +72,10 @@ namespace GraphLibrary
         int numVertices = graph.getNumVertices();
 
         // Check all adjacent vertices
+        visitedOrder.push_back(vertex);
         for (int i = 0; i < numVertices; ++i) {
             if (matrix[vertex][i] != 0 && !visited[i]) {
-                DFSUtil(graph, i, visited);
+                DFSUtil(graph, i, visited, visitedOrder);
             }
         }
     }

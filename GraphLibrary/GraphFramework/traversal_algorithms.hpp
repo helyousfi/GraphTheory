@@ -18,14 +18,17 @@ namespace GraphLibrary {
     class GRAPH_LIBRARY_API TraversalAlgorithms {
     public:
         // Perform Breadth-First Search (BFS) starting from the given vertex
-        static void BFS(const AdjacencyMatrixGraph& graph, int startVertex);
+        static std::vector<int> BFS(const Graph& graph, int startVertex);
 
         // Perform Depth-First Search (DFS) starting from the given vertex
-        static void DFS(const AdjacencyMatrixGraph& graph, int startVertex);
+        static std::vector<int> DFS(const Graph& graph, int startVertex);
 
     private:
         // Helper function for DFS traversal
-        static void DFSUtil(const AdjacencyMatrixGraph& graph, int vertex, std::vector<bool>& visited);
+        static void DFSUtil(const Graph& graph, 
+            int vertex, 
+            std::vector<bool>& visited,
+            std::vector<int> visitedOrder);
     };
 };
 

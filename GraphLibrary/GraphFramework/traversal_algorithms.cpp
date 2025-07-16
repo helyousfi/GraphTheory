@@ -37,7 +37,9 @@ namespace GraphLibrary
     }
 
     // DFS implementation
-    void TraversalAlgorithms::DFS(const AdjacencyMatrixGraph& graph, int startVertex) {
+    void TraversalAlgorithms::DFS(
+        const AdjacencyMatrixGraph& graph, 
+        int startVertex) {
         int numVertices = graph.getNumVertices();
         std::vector<bool> visited(numVertices, false);
     
@@ -46,7 +48,10 @@ namespace GraphLibrary
     }
 
     // Utility function for DFS
-    void TraversalAlgorithms::DFSUtil(const AdjacencyMatrixGraph& graph, int vertex, std::vector<bool>& visited) {
+    void TraversalAlgorithms::DFSUtil(
+        const AdjacencyMatrixGraph& graph, 
+        int vertex, 
+        std::vector<bool>& visited) {
         // Mark the current vertex as visited and print it
         visited[vertex] = true;
         std::cout << vertex << " ";

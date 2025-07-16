@@ -16,7 +16,7 @@ int main()
     graph->addEdge(3, 4);
     graph->printMatrix();
 
-    TraversalAlgorithms::DFS(*graph, 0);
+    TraversalAlgorithms::BFS(*graph, 0);
 
 #ifdef DEBUG
     

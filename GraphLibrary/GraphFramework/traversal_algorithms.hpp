@@ -15,7 +15,7 @@
 #endif
 
 namespace GraphLibrary {
-    class TraversalAlgorithms {
+    class GRAPH_LIBRARY_API TraversalAlgorithms {
     public:
         // Perform Breadth-First Search (BFS) starting from the given vertex
         static void BFS(const AdjacencyMatrixGraph& graph, int startVertex);

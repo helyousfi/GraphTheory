@@ -14,13 +14,10 @@ namespace GraphLibrary
         lows = std::vector<int>(numVertices, 0);
         visited = std::vector<bool>(numVertices, false);
     }
-    std::vector<std::pair<int, int>> BridgesFinder::findBridges()
-    {
+    std::vector<std::pair<int, int>> BridgesFinder::findBridges(){
         std::vector<std::pair<int, int>> bridges;
-        for (int i = 0; i < numVertices; i++)
-        {
-            if (!visited[i])
-            {
+        for (int i = 0; i < numVertices; i++){
+            if (!visited[i]){
                 DFSUtil(i, -1, bridges);
             }
         }

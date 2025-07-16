@@ -3,6 +3,9 @@
 
 #include "adjacency_matrix_graph.hpp"
 #include <vector>
+#include <iostream>
+#include <queue>
+#include <stack>
 
 // Define DLL export/import macro
 #ifdef GRAPH_LIBRARY_EXPORTS

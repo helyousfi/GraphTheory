@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include "graph.hpp"
+
 // Debug macro
 #ifdef _DEBUG
 #define DEBUG_LOG(msg) std::cout << "DEBUG: " << msg << std::endl;

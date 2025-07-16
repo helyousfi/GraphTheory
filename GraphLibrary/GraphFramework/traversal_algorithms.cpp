@@ -1,9 +1,5 @@
 #include "pch.h"
-#include "adjacency_matrix_graph.hpp"
 #include "traversal_algorithms.hpp"
-#include <iostream>
-#include <queue>
-#include <stack>
 
 namespace GraphLibrary
 {

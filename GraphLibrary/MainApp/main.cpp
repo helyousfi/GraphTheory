@@ -1,6 +1,7 @@
 #include <iostream>
 #include "../GraphFramework/graph.hpp"
 #include "../GraphFramework/adjacency_matrix_graph.hpp"
+#include "../GraphFramework/traversal_algorithms.hpp"
 
 using namespace GraphLibrary;
 int main()
@@ -14,6 +15,8 @@ int main()
     graph->addEdge(3, 5);
     graph->addEdge(3, 4);
     graph->printMatrix();
+
+    TraversalAlgorithms::DFS(*graph, 0);
 
 #ifdef DEBUG
     

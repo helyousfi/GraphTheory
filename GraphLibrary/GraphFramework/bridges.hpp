@@ -17,7 +17,7 @@
 #endif
 
 namespace GraphLibrary {
-    class BridgesFinder {
+    class GRAPH_LIBRARY_API BridgesFinder {
     public:
         BridgesFinder(Graph *graph);
         // Static method to find edges on the given graph

@@ -2,6 +2,7 @@
 #include "../GraphFramework/graph.hpp"
 #include "../GraphFramework/adjacency_matrix_graph.hpp"
 #include "../GraphFramework/traversal_algorithms.hpp"
+#include "../GraphFramework/bridges.hpp"
 
 using namespace GraphLibrary;
 int main()
@@ -21,5 +22,14 @@ int main()
     {
         std::cout << a << std::endl;
     }
+
+    BridgesFinder bridgeFinder(graph);
+    std::vector<std::pair<int, int>> bridges = bridgeFinder.findBridges();
+    for (auto bridge : bridges)
+    {
+        std::cout << bridge.first << " " << 
+            bridge.second << std::endl;
+    }
+
     return 0;
 }

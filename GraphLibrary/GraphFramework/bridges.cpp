@@ -1,5 +1,4 @@
 //  Tarjan’s Algorithm for finding bridges.
-
 #include "pch.h" 
 #include "graph.hpp" 
 #include "bridges.hpp" 
@@ -18,6 +17,11 @@ namespace GraphLibrary {
 		visited = std::vector<bool>(numVertices, false); 
 	} 
 
+	/// <summary>
+	/// A bridge is an edge that, if removed, increases the number of connected components
+	/// in the graph. This function updates the `bridges` vector with all such edges.
+	/// </summary>
+	/// <returns></returns>
 	std::vector<std::pair<int, int>> BridgesFinder::findBridges() 
 	{ 
 		std::vector<std::pair<int, int>> bridges; 
@@ -31,7 +35,19 @@ namespace GraphLibrary {
 		return bridges; 
 	} 
 	
-	void BridgesFinder::DFSUtil(int node, int parent, std::vector<std::pair<int, int>>& bridges) 
+	/// <summary>
+	/// Performs a depth-first search (DFS) traversal to find all bridges (critical edges)
+	/// in an undirected graph using Tarjan's algorithm.
+	/// </summary>
+	/// <param name="node">The current node being visited in the DFS traversal.</param>
+	/// <param name="parent">The parent node of the current node in the DFS tree.</param>
+	/// <param name="bridges">
+	/// A reference to a vector that accumulates all bridges found in the graph.
+	/// Each bridge is represented as a pair of integers (u, v), where (u, v) is a critical edge.
+	/// </param>
+	void BridgesFinder::DFSUtil(int node,			// Current node
+		int parent,									// Parent node
+		std::vector<std::pair<int, int>>& bridges)	// return value, bridges
 	{ 
 		visited[node] = true; 
 		ids[node] = lows[node] = ++idCounter; 
@@ -45,8 +61,10 @@ namespace GraphLibrary {
 				if (!visited[neighbor]) 
 				{ 
 					DFSUtil(neighbor, node, bridges); 
+					
 					// Update low-link value 
 					lows[node] = std::min(lows[node], lows[neighbor]); 
+					
 					// Bridge condition 
 					if (lows[neighbor] > ids[node]) 
 					{ 

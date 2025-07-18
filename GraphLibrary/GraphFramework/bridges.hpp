@@ -1,4 +1,4 @@
-// a bridge (also known as a cut-edge) is an edge whose removal increases the number of 
+// A bridge (also known as a cut-edge) is an edge whose removal increases the number of 
 // connected components of the graph.
 
 #pragma once

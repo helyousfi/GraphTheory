@@ -10,7 +10,8 @@
 #undef min
 
 namespace GraphLibrary { 
-	BridgesFinder::BridgesFinder(Graph* g) : graph(g), numVertices(g->getNumVertices()), idCounter(0) 
+	BridgesFinder::BridgesFinder(Graph* g) : 
+		graph(g), numVertices(g->getNumVertices()), idCounter(0) 
 	{ 
 		ids = std::vector<int>(numVertices, 0); 
 		lows = std::vector<int>(numVertices, 0); 

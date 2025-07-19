@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClCompile Include="adjacency_list_graph.cpp" />
     <ClCompile Include="adjacency_matrix_graph.cpp" />
+    <ClCompile Include="articulation_points.cpp" />
     <ClCompile Include="bridges.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="dungeonProblem.cpp" />

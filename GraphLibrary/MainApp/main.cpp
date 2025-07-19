@@ -3,6 +3,7 @@
 #include "../GraphFramework/adjacency_matrix_graph.hpp"
 #include "../GraphFramework/traversal_algorithms.hpp"
 #include "../GraphFramework/bridges.hpp"
+#include "../GraphFramework/articulation_points.hpp"
 
 using namespace GraphLibrary;
 int main()
@@ -29,6 +30,13 @@ int main()
     {
         std::cout << bridge.first << " " << 
             bridge.second << std::endl;
+    }
+
+    ArticulationPointFinder articulationPointFinder(graph);
+    std::vector <int> artPoints = articulationPointFinder.findArticulationPoints();
+    for (auto artPt : artPoints)
+    {
+        std::cout << artPt << std::endl;
     }
 
     return 0;

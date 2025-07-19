@@ -113,5 +113,8 @@
     <ClCompile Include="traversal_algorithms.cpp">
       <Filter>Source Files\TraversalAlgorithms</Filter>
     </ClCompile>
+    <ClCompile Include="articulation_points.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-// adjacency_matrix_graph.cpp
+// adjacency_matrix_graph.hpp
 // 
 // Implementation of the AdjacencyMatrixGraph class, which represents a graph using an adjacency matrix.
 // This class provides methods to add, remove, and check edges, as well as to manipulate and query the graph.
@@ -12,77 +12,61 @@
 // This implementation is part of a graph library designed to offer efficient graph operations and algorithms.
 // Given the performance requirements, this library is implemented in C++ for better speed and efficiency compared to higher-level languages like Python.
 
-
-#pragma once
-#ifndef GRAPHX_INCLUDE_ADJACENCY_MATRIX_GRAPH_DEFENITION_H
-#define GRAPHX_INCLUDE_ADJACENCY_MATRIX_GRAPH_DEFENITION_H
+#ifndef GRAPHX_INCLUDE_ADJACENCY_MATRIX_GRAPH_DEFENITION_H_
+#define GRAPHX_INCLUDE_ADJACENCY_MATRIX_GRAPH_DEFENITION_H_
 
 #include <vector>
 #include <iostream>
+#include <unordered_map>
 #include "graph.hpp"
 
-#define DEFAULT_WEIGHT 1
-
-// Debug macro
-#ifdef _DEBUG
-#define DEBUG_LOG(msg) std::cout << "DEBUG: " << msg << std::endl;
-#else
-#define DEBUG_LOG(msg)
-#endif
-
-// Define DLL export/import macro
-#ifdef GRAPH_LIBRARY_EXPORTS
-#define GRAPH_LIBRARY_API __declspec(dllexport)
-#else
-#define GRAPH_LIBRARY_API __declspec(dllimport)
-#endif
-
-namespace GraphX {
-    // Adjacency Matrix representation of a graph
-    // Public Inheritence so that public and protected members retain their visibility
-    class AdjacencyMatrixGraph : public Graph 
+namespace graphx {
+    template <typename VertexType, typename WeightType = int>
+    class AdjacencyMatrixGraph : public Graph<VertexType, WeightType>
     {
-    private: 
-        int **matrix;       // 2D array to store the adjacency matrix
-        int numVertices;    // Number of vertices in the graph
-        bool directed;      // Indicates if the graph is directed
+    private:
+    	std::unordered_map<VertexType, size_t> vertex_indices_; // Map vertex -> index
+        std::vector<std::vector<std::optional<WeightType>>> matrix_; // Adjacency matrix
+        bool directed_; // Indicates if the graph is directed
 
     public:
-        // Constructor to initialize the graph with n vertices
-        AdjacencyMatrixGraph(int n, bool isDirected = false);
-
-        // Destructor to free dynamically allocated memory
-        ~AdjacencyMatrixGraph();
-
-        // Function to add an edge from vertex u to vertex v with weight w (for weighted graphs)
-        void addEdge(int u, int v, int w = DEFAULT_WEIGHT) override;
-
-        // Function to remove an edge from vertex u to vertex v
-        void removeEdge(int u, int v) override;
-
-        // Function to check if there is an edge from vertex u to vertex v
-        bool hasEdge(int u, int v) const override;
-
-        // Function to print the graph
-        void printMatrix() const override;
-
-        // Getter for the number of vertices
-        int getNumVertices() const override;
-
-        // Getter for the edge weight
-        int getEdgeWeight(int node1, int node2) const override;
-
-        // Getter for the adjacency matrix
-        int** getMatrix() const override;
-
-        // Getter for the neighbor
-        int* getNeighbors(int vertex) const override;
-
-        // Function to multiply the matrix by -1 : useful for SSSP_DAG longest path
-        void multiplyByMinusOne() override;
-
-        // Get All Edges
-        std::vector<std::pair<int, int>> getEdges() const override;
+        AdjacencyMatrixGraph(size_t n, bool is_directed = false);
+        ~AdjacencyMatrixGraph() override = default;
+        
+        // Core operations
+    	void add_vertex(const VertexType& vertex) override;
+    	bool remove_vertex(const VertexType& vertex) override;
+	
+    	void add_edge(const VertexType& u, const VertexType& v, WeightType weight = WeightType{}) override;
+    	bool remove_edge(const VertexType& u, const VertexType& v) override;
+	
+    	// Queries
+    	bool has_vertex(const VertexType& vertex) const override;
+    	bool has_edge(const VertexType& u, const VertexType& v) const override;
+	
+    	// Accessors
+    	std::vector<VertexType> neighbors(const VertexType& vertex) const override;
+    	std::vector<VertexType> vertices() const override;
+    	std::vector<std::pair<VertexType, VertexType>> edges() const override;
+    	std::optional<WeightType> get_edge_weight(const VertexType& u, const VertexType& v) const override;
+    	int degree(const VertexType& vertex) const override;
+    	int in_degree(const VertexType& vertex) const override;
+    	int out_degree(const VertexType& vertex) const override;
+	
+    	// Stats
+    	size_t vertex_count() const override;
+    	size_t edge_count() const override;
+    	bool is_directed() const override;
+    	bool is_weighted() const override;
+	
+    	// Utilities
+    	void multiply_by_minus_one() override;
+    	void clear() override;
+    	void print(std::ostream& os = std::cout) const override;
+    	bool save_to_file(const std::string& filename) const override;
+    	bool load_from_file(const std::string& filename) override;
     };
 };
-#endif // GRAPHX_INCLUDE_ADJACENCY_MATRIX_GRAPH_DEFENITION_H
+#endif // GRAPHX_INCLUDE_ADJACENCY_MATRIX_GRAPH_DEFENITION_H_
+
+#include "adjacency_matrix_graph.tpp"

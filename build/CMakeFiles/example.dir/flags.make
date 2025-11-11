@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/vboxuser/Documents/Graph/GraphX/include -I/home/vboxuser/Documents/Graph/GraphX/include/algorithms
+CXX_INCLUDES = -I/home/vboxuser/Documents/Graph/GraphX/include -I/home/vboxuser/Documents/Graph/GraphX/src -I/home/vboxuser/Documents/Graph/GraphX/include/algorithms
 
 CXX_FLAGS = -std=gnu++20
 

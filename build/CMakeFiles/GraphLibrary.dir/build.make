@@ -83,33 +83,17 @@ CMakeFiles/GraphLibrary.dir/src/adjacency_matrix_graph.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GraphLibrary.dir/src/adjacency_matrix_graph.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vboxuser/Documents/Graph/GraphX/src/adjacency_matrix_graph.cpp -o CMakeFiles/GraphLibrary.dir/src/adjacency_matrix_graph.cpp.s
 
-CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.o: CMakeFiles/GraphLibrary.dir/flags.make
-CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.o: /home/vboxuser/Documents/Graph/GraphX/src/algorithms/shortest_path_algorithms.cpp
-CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.o: CMakeFiles/GraphLibrary.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.o -MF CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.o.d -o CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.o -c /home/vboxuser/Documents/Graph/GraphX/src/algorithms/shortest_path_algorithms.cpp
-
-CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vboxuser/Documents/Graph/GraphX/src/algorithms/shortest_path_algorithms.cpp > CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.i
-
-CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vboxuser/Documents/Graph/GraphX/src/algorithms/shortest_path_algorithms.cpp -o CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.s
-
 # Object files for target GraphLibrary
 GraphLibrary_OBJECTS = \
-"CMakeFiles/GraphLibrary.dir/src/adjacency_matrix_graph.cpp.o" \
-"CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.o"
+"CMakeFiles/GraphLibrary.dir/src/adjacency_matrix_graph.cpp.o"
 
 # External object files for target GraphLibrary
 GraphLibrary_EXTERNAL_OBJECTS =
 
 libGraphLibrary.a: CMakeFiles/GraphLibrary.dir/src/adjacency_matrix_graph.cpp.o
-libGraphLibrary.a: CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.o
 libGraphLibrary.a: CMakeFiles/GraphLibrary.dir/build.make
 libGraphLibrary.a: CMakeFiles/GraphLibrary.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libGraphLibrary.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libGraphLibrary.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/GraphLibrary.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GraphLibrary.dir/link.txt --verbose=$(VERBOSE)
 

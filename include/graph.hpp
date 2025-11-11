@@ -5,6 +5,9 @@
 #include <vector>
 #include <optional>
 #include <stdexcept>
+#include <string>
+#include <iostream>
+
 
 inline constexpr int kDefaultWeight = 1;
 
@@ -24,7 +27,7 @@ namespace graphx {
 			// Core operations
 			virtual void add_vertex(const VertexType& vertex) = 0;
 			virtual bool remove_vertex(const VertexType& vertex) = 0;
-            virtual void add_edge(const VertexType& u, const VertexType& v, WeightType weight = DEFAULT_WEIGHT) = 0;
+            virtual void add_edge(const VertexType& u, const VertexType& v, WeightType weight = kDefaultWeight) = 0;
             virtual bool remove_edge(const VertexType& u, const VertexType& v) = 0;
             
             // Queries
@@ -41,8 +44,8 @@ namespace graphx {
 			virtual int out_degree(const VertexType& vertex) const = 0;
 			
             // Stats
-            virtual int vertex_count() const = 0;
-            virtual int edge_count() const = 0;
+            virtual size_t vertex_count() const = 0;
+            virtual size_t edge_count() const = 0;
             virtual bool is_directed() const = 0;
 			virtual bool is_weighted() const = 0;
 			
@@ -50,8 +53,8 @@ namespace graphx {
             virtual void multiply_by_minus_one() = 0;
             virtual void clear() = 0;
 			virtual void print(std::ostream& os = std::cout) const = 0;
-			virtual void save_to_file(const std::string& filename) const = 0;
-			virtual void load_from_file(const std::string& filename) = 0;
+			virtual bool save_to_file(const std::string& filename) const = 0;
+			virtual bool load_from_file(const std::string& filename) = 0;
     };
 }
 #endif // GRAPHX_INCLUDE_GRAPH_H_

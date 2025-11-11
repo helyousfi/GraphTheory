@@ -117,19 +117,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named GraphLibrary
-
-# Build rule for target.
-GraphLibrary: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 GraphLibrary
-.PHONY : GraphLibrary
-
-# fast build rule for target.
-GraphLibrary/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphLibrary.dir/build.make CMakeFiles/GraphLibrary.dir/build
-.PHONY : GraphLibrary/fast
-
-#=============================================================================
 # Target rules for targets named example
 
 # Build rule for target.
@@ -142,77 +129,29 @@ example/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/build
 .PHONY : example/fast
 
-examples/example_shortest_paths.o: examples/example_shortest_paths.cpp.o
-.PHONY : examples/example_shortest_paths.o
+examples/example_basic.o: examples/example_basic.cpp.o
+.PHONY : examples/example_basic.o
 
 # target to build an object file
-examples/example_shortest_paths.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/examples/example_shortest_paths.cpp.o
-.PHONY : examples/example_shortest_paths.cpp.o
+examples/example_basic.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/examples/example_basic.cpp.o
+.PHONY : examples/example_basic.cpp.o
 
-examples/example_shortest_paths.i: examples/example_shortest_paths.cpp.i
-.PHONY : examples/example_shortest_paths.i
-
-# target to preprocess a source file
-examples/example_shortest_paths.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/examples/example_shortest_paths.cpp.i
-.PHONY : examples/example_shortest_paths.cpp.i
-
-examples/example_shortest_paths.s: examples/example_shortest_paths.cpp.s
-.PHONY : examples/example_shortest_paths.s
-
-# target to generate assembly for a file
-examples/example_shortest_paths.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/examples/example_shortest_paths.cpp.s
-.PHONY : examples/example_shortest_paths.cpp.s
-
-src/adjacency_matrix_graph.o: src/adjacency_matrix_graph.cpp.o
-.PHONY : src/adjacency_matrix_graph.o
-
-# target to build an object file
-src/adjacency_matrix_graph.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphLibrary.dir/build.make CMakeFiles/GraphLibrary.dir/src/adjacency_matrix_graph.cpp.o
-.PHONY : src/adjacency_matrix_graph.cpp.o
-
-src/adjacency_matrix_graph.i: src/adjacency_matrix_graph.cpp.i
-.PHONY : src/adjacency_matrix_graph.i
+examples/example_basic.i: examples/example_basic.cpp.i
+.PHONY : examples/example_basic.i
 
 # target to preprocess a source file
-src/adjacency_matrix_graph.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphLibrary.dir/build.make CMakeFiles/GraphLibrary.dir/src/adjacency_matrix_graph.cpp.i
-.PHONY : src/adjacency_matrix_graph.cpp.i
+examples/example_basic.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/examples/example_basic.cpp.i
+.PHONY : examples/example_basic.cpp.i
 
-src/adjacency_matrix_graph.s: src/adjacency_matrix_graph.cpp.s
-.PHONY : src/adjacency_matrix_graph.s
-
-# target to generate assembly for a file
-src/adjacency_matrix_graph.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphLibrary.dir/build.make CMakeFiles/GraphLibrary.dir/src/adjacency_matrix_graph.cpp.s
-.PHONY : src/adjacency_matrix_graph.cpp.s
-
-src/algorithms/shortest_path_algorithms.o: src/algorithms/shortest_path_algorithms.cpp.o
-.PHONY : src/algorithms/shortest_path_algorithms.o
-
-# target to build an object file
-src/algorithms/shortest_path_algorithms.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphLibrary.dir/build.make CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.o
-.PHONY : src/algorithms/shortest_path_algorithms.cpp.o
-
-src/algorithms/shortest_path_algorithms.i: src/algorithms/shortest_path_algorithms.cpp.i
-.PHONY : src/algorithms/shortest_path_algorithms.i
-
-# target to preprocess a source file
-src/algorithms/shortest_path_algorithms.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphLibrary.dir/build.make CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.i
-.PHONY : src/algorithms/shortest_path_algorithms.cpp.i
-
-src/algorithms/shortest_path_algorithms.s: src/algorithms/shortest_path_algorithms.cpp.s
-.PHONY : src/algorithms/shortest_path_algorithms.s
+examples/example_basic.s: examples/example_basic.cpp.s
+.PHONY : examples/example_basic.s
 
 # target to generate assembly for a file
-src/algorithms/shortest_path_algorithms.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphLibrary.dir/build.make CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.s
-.PHONY : src/algorithms/shortest_path_algorithms.cpp.s
+examples/example_basic.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/examples/example_basic.cpp.s
+.PHONY : examples/example_basic.cpp.s
 
 # Help Target
 help:
@@ -222,17 +161,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... GraphLibrary"
 	@echo "... example"
-	@echo "... examples/example_shortest_paths.o"
-	@echo "... examples/example_shortest_paths.i"
-	@echo "... examples/example_shortest_paths.s"
-	@echo "... src/adjacency_matrix_graph.o"
-	@echo "... src/adjacency_matrix_graph.i"
-	@echo "... src/adjacency_matrix_graph.s"
-	@echo "... src/algorithms/shortest_path_algorithms.o"
-	@echo "... src/algorithms/shortest_path_algorithms.i"
-	@echo "... src/algorithms/shortest_path_algorithms.s"
+	@echo "... examples/example_basic.o"
+	@echo "... examples/example_basic.i"
+	@echo "... examples/example_basic.s"
 .PHONY : help
 
 

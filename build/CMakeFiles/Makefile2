@@ -63,7 +63,6 @@ CMAKE_BINARY_DIR = /home/vboxuser/Documents/Graph/GraphX/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/GraphLibrary.dir/all
 all: CMakeFiles/example.dir/all
 .PHONY : all
 
@@ -72,49 +71,22 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/GraphLibrary.dir/clean
 clean: CMakeFiles/example.dir/clean
 .PHONY : clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/GraphLibrary.dir
-
-# All Build rule for target.
-CMakeFiles/GraphLibrary.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphLibrary.dir/build.make CMakeFiles/GraphLibrary.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphLibrary.dir/build.make CMakeFiles/GraphLibrary.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles --progress-num=1,2,3 "Built target GraphLibrary"
-.PHONY : CMakeFiles/GraphLibrary.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/GraphLibrary.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles 3
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/GraphLibrary.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles 0
-.PHONY : CMakeFiles/GraphLibrary.dir/rule
-
-# Convenience name for target.
-GraphLibrary: CMakeFiles/GraphLibrary.dir/rule
-.PHONY : GraphLibrary
-
-# clean rule for target.
-CMakeFiles/GraphLibrary.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/GraphLibrary.dir/build.make CMakeFiles/GraphLibrary.dir/clean
-.PHONY : CMakeFiles/GraphLibrary.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/example.dir
 
 # All Build rule for target.
-CMakeFiles/example.dir/all: CMakeFiles/GraphLibrary.dir/all
+CMakeFiles/example.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/example.dir/build.make CMakeFiles/example.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles --progress-num=4,5 "Built target example"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles --progress-num=1,2 "Built target example"
 .PHONY : CMakeFiles/example.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/example.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/example.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles 0
 .PHONY : CMakeFiles/example.dir/rule

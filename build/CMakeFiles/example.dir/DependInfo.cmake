@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/vboxuser/Documents/Graph/GraphX/examples/example_shortest_paths.cpp" "CMakeFiles/example.dir/examples/example_shortest_paths.cpp.o" "gcc" "CMakeFiles/example.dir/examples/example_shortest_paths.cpp.o.d"
+  "/home/vboxuser/Documents/Graph/GraphX/examples/example_basic.cpp" "CMakeFiles/example.dir/examples/example_basic.cpp.o" "gcc" "CMakeFiles/example.dir/examples/example_basic.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

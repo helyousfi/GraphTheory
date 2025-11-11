@@ -69,30 +69,29 @@ include CMakeFiles/example.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/example.dir/flags.make
 
-CMakeFiles/example.dir/examples/example_shortest_paths.cpp.o: CMakeFiles/example.dir/flags.make
-CMakeFiles/example.dir/examples/example_shortest_paths.cpp.o: /home/vboxuser/Documents/Graph/GraphX/examples/example_shortest_paths.cpp
-CMakeFiles/example.dir/examples/example_shortest_paths.cpp.o: CMakeFiles/example.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/example.dir/examples/example_shortest_paths.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/example.dir/examples/example_shortest_paths.cpp.o -MF CMakeFiles/example.dir/examples/example_shortest_paths.cpp.o.d -o CMakeFiles/example.dir/examples/example_shortest_paths.cpp.o -c /home/vboxuser/Documents/Graph/GraphX/examples/example_shortest_paths.cpp
+CMakeFiles/example.dir/examples/example_basic.cpp.o: CMakeFiles/example.dir/flags.make
+CMakeFiles/example.dir/examples/example_basic.cpp.o: /home/vboxuser/Documents/Graph/GraphX/examples/example_basic.cpp
+CMakeFiles/example.dir/examples/example_basic.cpp.o: CMakeFiles/example.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/example.dir/examples/example_basic.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/example.dir/examples/example_basic.cpp.o -MF CMakeFiles/example.dir/examples/example_basic.cpp.o.d -o CMakeFiles/example.dir/examples/example_basic.cpp.o -c /home/vboxuser/Documents/Graph/GraphX/examples/example_basic.cpp
 
-CMakeFiles/example.dir/examples/example_shortest_paths.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/example.dir/examples/example_shortest_paths.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vboxuser/Documents/Graph/GraphX/examples/example_shortest_paths.cpp > CMakeFiles/example.dir/examples/example_shortest_paths.cpp.i
+CMakeFiles/example.dir/examples/example_basic.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/example.dir/examples/example_basic.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vboxuser/Documents/Graph/GraphX/examples/example_basic.cpp > CMakeFiles/example.dir/examples/example_basic.cpp.i
 
-CMakeFiles/example.dir/examples/example_shortest_paths.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/example.dir/examples/example_shortest_paths.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vboxuser/Documents/Graph/GraphX/examples/example_shortest_paths.cpp -o CMakeFiles/example.dir/examples/example_shortest_paths.cpp.s
+CMakeFiles/example.dir/examples/example_basic.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/example.dir/examples/example_basic.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vboxuser/Documents/Graph/GraphX/examples/example_basic.cpp -o CMakeFiles/example.dir/examples/example_basic.cpp.s
 
 # Object files for target example
 example_OBJECTS = \
-"CMakeFiles/example.dir/examples/example_shortest_paths.cpp.o"
+"CMakeFiles/example.dir/examples/example_basic.cpp.o"
 
 # External object files for target example
 example_EXTERNAL_OBJECTS =
 
-example: CMakeFiles/example.dir/examples/example_shortest_paths.cpp.o
+example: CMakeFiles/example.dir/examples/example_basic.cpp.o
 example: CMakeFiles/example.dir/build.make
-example: libGraphLibrary.a
 example: CMakeFiles/example.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/vboxuser/Documents/Graph/GraphX/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable example"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/example.dir/link.txt --verbose=$(VERBOSE)

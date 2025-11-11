@@ -69,4 +69,4 @@ namespace graphx {
 };
 #endif // GRAPHX_INCLUDE_ADJACENCY_MATRIX_GRAPH_DEFENITION_H_
 
-#include "adjacency_matrix_graph.tpp"
+#include "adjacency_matrix_graph.cpp"

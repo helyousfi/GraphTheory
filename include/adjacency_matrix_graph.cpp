@@ -24,17 +24,42 @@ void AdjacencyMatrixGraph<VertexType, WeightType>::add_vertex(const VertexType& 
     matrix_.push_back(std::vector<std::optional<WeightType>>(new_index + 1, std::nullopt));
 }
 
-// Remove vertex (TODO)
+// Remove vertex
 template <typename VertexType, typename WeightType>
 bool AdjacencyMatrixGraph<VertexType, WeightType>::remove_vertex(const VertexType& vertex)
 {
-    return false;
+	auto it = vertex_indices_.find(vertex);
+    if (it == vertex_indices_.end())
+        return false; 
+    size_t idx = it->second;
+    vertex_indices_.erase(it);
+    matrix_.erase(matrix_.begin() + idx);
+    for (auto& row : matrix_) {
+        row.erase(row.begin() + idx);
+    }
+    for (auto& [v, i] : vertex_indices_) {
+        if (i > idx)
+            --i;
+    }
+    return true;
 }
 
-// Add edge (TODO)
+// Add edge
 template <typename VertexType, typename WeightType>
 void AdjacencyMatrixGraph<VertexType, WeightType>::add_edge(const VertexType& u, const VertexType& v, WeightType weight)
 {
+	auto it_u = vertex_indices_.find(u);
+	auto it_v = vertex_indices_.find(v);
+	if (it_u == vertex_indices_.end() || it_v == vertex_indices_.end())
+        return;
+    size_t idx_u = it_u->second;   
+    size_t idx_v = it_v->second;
+    
+    matrix_[idx_u][idx_v] = weight;
+    
+    if (!directed_) {
+        matrix_[idx_v][idx_u] = weight;
+    }
 }
 
 // Remove edge (TODO)

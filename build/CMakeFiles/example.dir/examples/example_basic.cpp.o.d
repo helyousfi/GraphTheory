@@ -169,4 +169,4 @@ CMakeFiles/example.dir/examples/example_basic.cpp.o: \
  /usr/include/c++/13/bits/erase_if.h \
  /home/vboxuser/Documents/Graph/GraphX/include/graph.hpp \
  /usr/include/c++/13/optional \
- /home/vboxuser/Documents/Graph/GraphX/src/adjacency_matrix_graph.tpp
+ /home/vboxuser/Documents/Graph/GraphX/include/adjacency_matrix_graph.cpp

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libGraphLibrary.a CMakeFiles/GraphLibrary.dir/src/adjacency_matrix_graph.cpp.o CMakeFiles/GraphLibrary.dir/src/algorithms/shortest_path_algorithms.cpp.o
+/usr/bin/ranlib libGraphLibrary.a

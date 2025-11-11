@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/example_basic.dir/examples/example_basic.cpp.o -o example_basic  libGraphLibrary.a 

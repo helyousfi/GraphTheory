@@ -4,6 +4,7 @@
 class City{
 	public:
 		City(std::string name_p) : name(name_p) {}
+		City() = default; 
 		std::string name;
 		
 		bool operator==(const City& other) const {

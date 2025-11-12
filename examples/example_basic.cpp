@@ -40,6 +40,14 @@ int main() {
 	
     // Print vertex count again
     std::cout << "Number of vertices after removal: " << graph.vertex_count() << std::endl;
+    
+    // Print the degrees 
+	std::cout << "In degree of Paris: " << graph.in_degree(paris) << std::endl;
+	std::cout << "Out degree of Paris: " << graph.out_degree(paris) << std::endl;
+	std::cout << "Degree of Paris: " << graph.degree(paris) << std::endl;
+	
+	// Is weighted
+	std::cout << "Is weighted : " << graph.is_weighted() << std::endl;
 	
 	graph.print();
     return 0;

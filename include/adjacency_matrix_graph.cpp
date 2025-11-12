@@ -137,13 +137,11 @@ std::vector<VertexType> AdjacencyMatrixGraph<VertexType, WeightType>::vertices()
     return result;
 }
 
-// TODO
 template <typename VertexType, typename WeightType>
 std::vector<std::pair<VertexType, VertexType>> 
 AdjacencyMatrixGraph<VertexType, WeightType>::edges() const
 {
     std::vector<std::pair<VertexType, VertexType>> result;
-
     // Iterate over adjacency matrix
     for (size_t i = 0; i < matrix_.size(); ++i) {
         for (size_t j = 0; j < matrix_[i].size(); ++j) {
@@ -173,8 +171,10 @@ std::optional<WeightType> AdjacencyMatrixGraph<VertexType, WeightType>::get_edge
 template <typename VertexType, typename WeightType>
 int AdjacencyMatrixGraph<VertexType, WeightType>::degree(const VertexType& vertex) const
 {
-	size_t degree = out_degree(vertex) - in_degree(vertex);
-    return degree;
+	if (vertex_indices_.find(vertex) == vertex_indices_.end())
+        return 0;
+	size_t count = out_degree(vertex) + in_degree(vertex);
+	return directed_? static_cast<int>(count) : static_cast<int>(count/2);
 }
 
 template <typename VertexType, typename WeightType>
@@ -184,11 +184,11 @@ int AdjacencyMatrixGraph<VertexType, WeightType>::in_degree(const VertexType& ve
 	if(it_vertex == vertex_indices_.end())
 		return 0;
 	size_t idx_vertex = it_vertex->second; 
-	size_t = in_degree = 0;
-	for (const auto& row : matrix) {
+	size_t in_degree = 0;
+	for (const auto& row : matrix_) {
 		if(row[idx_vertex].has_value()) ++in_degree;		
 	}
-    return 0;
+    return in_degree;
 }
 
 template <typename VertexType, typename WeightType>
@@ -199,13 +199,13 @@ int AdjacencyMatrixGraph<VertexType, WeightType>::out_degree(const VertexType& v
 		return 0;
 	size_t idx_vertex = it_vertex->second; 
 	size_t out_degree = 0;
-	for (const auto& edge : matrix[idx_vertex]) {
+	for (const auto& edge : matrix_[idx_vertex]) {
 		if(edge.has_value()) ++out_degree;		
 	}
     return out_degree;
 }
 
-// Stats (TODO)
+// Stats
 template <typename VertexType, typename WeightType>
 size_t AdjacencyMatrixGraph<VertexType, WeightType>::vertex_count() const
 {
@@ -215,8 +215,21 @@ size_t AdjacencyMatrixGraph<VertexType, WeightType>::vertex_count() const
 template <typename VertexType, typename WeightType>
 size_t AdjacencyMatrixGraph<VertexType, WeightType>::edge_count() const
 {
-    return 0;
+    size_t count = 0;
+    for (const auto& row : matrix_) {
+        for (const auto& cell : row) {
+            if (cell.has_value()) {
+                ++count;
+            }
+        }
+    }
+    if (!directed_) {
+        count /= 2;
+    }
+
+    return count;
 }
+
 
 template <typename VertexType, typename WeightType>
 bool AdjacencyMatrixGraph<VertexType, WeightType>::is_directed() const
@@ -227,19 +240,30 @@ bool AdjacencyMatrixGraph<VertexType, WeightType>::is_directed() const
 template <typename VertexType, typename WeightType>
 bool AdjacencyMatrixGraph<VertexType, WeightType>::is_weighted() const
 {
-    return true;
+    return !std::is_same_v<WeightType, bool> && !std::is_same_v<WeightType, void>;
 }
 
-// Utilities (TODO)
+// Utilities
 template <typename VertexType, typename WeightType>
 void AdjacencyMatrixGraph<VertexType, WeightType>::multiply_by_minus_one()
 {
+	static_assert(std::is_arithmetic_v<WeightType>, "multiply_by_minus_one() requires a numeric WeightType");
+    for (auto& row : matrix_) {
+        for (auto& cell : row) {
+            if (cell.has_value()) {
+                cell = -(*cell);
+            }
+        }
+    }
 }
 
 template <typename VertexType, typename WeightType>
 void AdjacencyMatrixGraph<VertexType, WeightType>::clear()
 {
+    vertex_indices_.clear();               
+    matrix_.clear();                       
 }
+
 
 template <typename VertexType, typename WeightType>
 void AdjacencyMatrixGraph<VertexType, WeightType>::print(std::ostream& os) const
@@ -266,13 +290,55 @@ void AdjacencyMatrixGraph<VertexType, WeightType>::print(std::ostream& os) const
 template <typename VertexType, typename WeightType>
 bool AdjacencyMatrixGraph<VertexType, WeightType>::save_to_file(const std::string& filename) const
 {
-    return false;
+    std::ofstream out(filename);
+    if (!out.is_open())
+        return false;
+
+    out << vertex_indices_.size() << " " << directed_ << "\n";
+
+    for (const auto& row : matrix_) {
+        for (const auto& cell : row) {
+            if (cell)
+                out << *cell << " ";
+            else
+                out << "null ";
+        }
+        out << "\n";
+    }
+
+    out.close();
+    return true;
 }
 
 template <typename VertexType, typename WeightType>
 bool AdjacencyMatrixGraph<VertexType, WeightType>::load_from_file(const std::string& filename)
 {
-    return false;
+    std::ifstream in(filename);
+    if (!in.is_open())
+        return false;
+
+    size_t n;
+    in >> n >> directed_;
+
+    clear(); 
+
+    matrix_.resize(n, std::vector<std::optional<WeightType>>(n, std::nullopt));
+    vertex_indices_.clear();
+    for (size_t i = 0; i < n; ++i)
+        vertex_indices_[VertexType{}] = i;
+
+    std::string token;
+    for (size_t i = 0; i < n; ++i) {
+        for (size_t j = 0; j < n; ++j) {
+            in >> token;
+            if (token != "null")
+                matrix_[i][j] = static_cast<WeightType>(std::stod(token));
+        }
+    }
+
+    in.close();
+    return true;
 }
+
 
 } // namespace graphx

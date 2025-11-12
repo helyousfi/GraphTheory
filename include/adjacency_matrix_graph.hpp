@@ -18,6 +18,7 @@
 #include <vector>
 #include <iostream>
 #include <unordered_map>
+#include <fstream>
 #include "graph.hpp"
 
 namespace graphx {

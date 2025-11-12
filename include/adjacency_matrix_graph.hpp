@@ -26,6 +26,7 @@ namespace graphx {
     {
     private:
     	std::unordered_map<VertexType, size_t> vertex_indices_; // Map vertex -> index
+    	std::vector<VertexType> index_to_vertex_; // TODO
         std::vector<std::vector<std::optional<WeightType>>> matrix_; // Adjacency matrix
         bool directed_; // Indicates if the graph is directed
 

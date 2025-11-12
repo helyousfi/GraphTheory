@@ -17,7 +17,8 @@ void AdjacencyMatrixGraph<VertexType, WeightType>::add_vertex(const VertexType& 
 
     size_t new_index = vertex_indices_.size();
     vertex_indices_[vertex] = new_index;
-
+	index_to_vertex_.push_back(vertex);
+	
     for (auto& row : matrix_)
         row.push_back(std::nullopt);
 
@@ -41,6 +42,7 @@ bool AdjacencyMatrixGraph<VertexType, WeightType>::remove_vertex(const VertexTyp
         if (i > idx)
             --i;
     }
+    index_to_vertex_.erase(index_to_vertex_.begin() + idx);
     return true;
 }
 
@@ -62,14 +64,27 @@ void AdjacencyMatrixGraph<VertexType, WeightType>::add_edge(const VertexType& u,
     }
 }
 
-// Remove edge (TODO)
+// Remove edge
 template <typename VertexType, typename WeightType>
 bool AdjacencyMatrixGraph<VertexType, WeightType>::remove_edge(const VertexType& u, const VertexType& v)
 {
-    return false;
+	auto it_u = vertex_indices_.find(u);
+	auto it_v = vertex_indices_.find(v);
+	if (it_u == vertex_indices_.end() || it_v == vertex_indices_.end())
+        return false;
+    size_t idx_u = it_u->second; 
+    size_t idx_v = it_v->second; 
+    if(!matrix_[idx_u][idx_v].has_value()) {
+    	return false;
+    }
+    matrix_[idx_u][idx_v] = std::nullopt;
+    if (!directed_) {
+        matrix_[idx_v][idx_u] = std::nullopt;
+    }
+    return true;
 }
 
-// Queries (TODO)
+// Queries
 template <typename VertexType, typename WeightType>
 bool AdjacencyMatrixGraph<VertexType, WeightType>::has_vertex(const VertexType& vertex) const
 {
@@ -79,50 +94,115 @@ bool AdjacencyMatrixGraph<VertexType, WeightType>::has_vertex(const VertexType& 
 template <typename VertexType, typename WeightType>
 bool AdjacencyMatrixGraph<VertexType, WeightType>::has_edge(const VertexType& u, const VertexType& v) const
 {
-    return false;
+	auto it_u = vertex_indices_.find(u);
+	auto it_v = vertex_indices_.find(v);
+	if (it_u == vertex_indices_.end() || it_v == vertex_indices_.end())
+        return false;
+    size_t idx_u = it_u->second; 
+    size_t idx_v = it_v->second; 
+    if(!matrix_[idx_u][idx_v].has_value()) {
+    	return false;
+    }
+    return true;
 }
 
-// Accessors (TODO)
+// Accessors
 template <typename VertexType, typename WeightType>
 std::vector<VertexType> AdjacencyMatrixGraph<VertexType, WeightType>::neighbors(const VertexType& vertex) const
 {
-    return {};
+    auto it = vertex_indices_.find(vertex);
+    if (it == vertex_indices_.end())
+        return {};
+
+    size_t idx = it->second;
+    std::vector<VertexType> result;
+
+    for (const auto& [v, j] : vertex_indices_) {
+        if (matrix_[idx][j].has_value())
+            result.push_back(v);
+    }
+
+    return result;
 }
+
 
 template <typename VertexType, typename WeightType>
 std::vector<VertexType> AdjacencyMatrixGraph<VertexType, WeightType>::vertices() const
 {
-    return {};
+	std::vector<VertexType> result;
+	result.reserve(vertex_indices_.size()); // optimization: avoid reallocations
+    for (const auto& [v, _] : vertex_indices_) {
+    	result.push_back(v);
+    }
+    return result;
 }
 
+// TODO
 template <typename VertexType, typename WeightType>
-std::vector<std::pair<VertexType, VertexType>> AdjacencyMatrixGraph<VertexType, WeightType>::edges() const
+std::vector<std::pair<VertexType, VertexType>> 
+AdjacencyMatrixGraph<VertexType, WeightType>::edges() const
 {
-    return {};
+    std::vector<std::pair<VertexType, VertexType>> result;
+
+    // Iterate over adjacency matrix
+    for (size_t i = 0; i < matrix_.size(); ++i) {
+        for (size_t j = 0; j < matrix_[i].size(); ++j) {
+            if (matrix_[i][j].has_value()) { // edge exists
+                result.emplace_back(index_to_vertex_[i], index_to_vertex_[j]);
+            }
+        }
+    }
+    return result;
 }
+
 
 template <typename VertexType, typename WeightType>
 std::optional<WeightType> AdjacencyMatrixGraph<VertexType, WeightType>::get_edge_weight(const VertexType& u, const VertexType& v) const
 {
-    return std::nullopt;
+	auto it_u = vertex_indices_.find(u);
+	auto it_v = vertex_indices_.find(v);
+	if (it_u == vertex_indices_.end() || it_v == vertex_indices_.end())
+        return std::nullopt;
+    size_t idx_u = it_u->second; 
+    size_t idx_v = it_v->second; 
+	if (idx_u >= matrix_.size() || idx_v >= matrix_[idx_u].size())
+        return std::nullopt;
+    return matrix_[idx_u][idx_v];
 }
 
 template <typename VertexType, typename WeightType>
 int AdjacencyMatrixGraph<VertexType, WeightType>::degree(const VertexType& vertex) const
 {
-    return 0;
+	size_t degree = out_degree(vertex) - in_degree(vertex);
+    return degree;
 }
 
 template <typename VertexType, typename WeightType>
 int AdjacencyMatrixGraph<VertexType, WeightType>::in_degree(const VertexType& vertex) const
 {
+	auto it_vertex = vertex_indices_.find(vertex);
+	if(it_vertex == vertex_indices_.end())
+		return 0;
+	size_t idx_vertex = it_vertex->second; 
+	size_t = in_degree = 0;
+	for (const auto& row : matrix) {
+		if(row[idx_vertex].has_value()) ++in_degree;		
+	}
     return 0;
 }
 
 template <typename VertexType, typename WeightType>
 int AdjacencyMatrixGraph<VertexType, WeightType>::out_degree(const VertexType& vertex) const
 {
-    return 0;
+	auto it_vertex = vertex_indices_.find(vertex);
+	if(it_vertex == vertex_indices_.end())
+		return 0;
+	size_t idx_vertex = it_vertex->second; 
+	size_t out_degree = 0;
+	for (const auto& edge : matrix[idx_vertex]) {
+		if(edge.has_value()) ++out_degree;		
+	}
+    return out_degree;
 }
 
 // Stats (TODO)
@@ -164,7 +244,24 @@ void AdjacencyMatrixGraph<VertexType, WeightType>::clear()
 template <typename VertexType, typename WeightType>
 void AdjacencyMatrixGraph<VertexType, WeightType>::print(std::ostream& os) const
 {
+	os << "Vertex Indices:\n";
+	for (const auto& [vertex, index] : vertex_indices_)
+	{
+		os << vertex << ":" << index << "  ";
+	}
+    os << "\nAdjacency Matrix:\n";
+    size_t idx_u = 0, idx_v = 0;
+    for (const auto& row : matrix_) {
+        for (const auto& cell : row) {
+            if (cell.has_value())
+                os << *cell << " ";
+            else
+                os << ". ";
+        }
+        os << "\n";
+    }
 }
+
 
 template <typename VertexType, typename WeightType>
 bool AdjacencyMatrixGraph<VertexType, WeightType>::save_to_file(const std::string& filename) const

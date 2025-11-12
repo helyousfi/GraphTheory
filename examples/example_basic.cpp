@@ -1,32 +1,13 @@
 #include <iostream>
 #include <string>
 #include "adjacency_matrix_graph.hpp"
+#include "city.hpp"
 
 using namespace graphx;
 
-class City{
-	public:
-		City(std::string name_p) : name(name_p) {}
-		std::string name;
-		
-		// Equality operator
-		bool operator==(const City& other) const {
-        	return name == other.name;
-    	}
-};
-
-namespace std {
-    template <>
-    struct hash<City> {
-        std::size_t operator()(const City& city) const noexcept {
-            return std::hash<std::string>{}(city.name);
-        }
-    };
-}
-
 int main() {
     // Create a directed graph
-    AdjacencyMatrixGraph<City, int> graph(0, true);
+    AdjacencyMatrixGraph<City, int> graph(0, false);
 	
 	City paris("paris");
 	City london("london");
@@ -38,7 +19,7 @@ int main() {
     graph.add_vertex(london);
     graph.add_vertex(zurich);
 	
-	graph.add_edge(paris, london, 500);
+	
     // Check vertices
     std::cout << "Graph has vertex rabat? " 
               << (graph.has_vertex(rabat) ? "Yes" : "No") << std::endl;
@@ -48,16 +29,18 @@ int main() {
     // Add edges (currently empty implementation, will do nothing)
     graph.add_edge(zurich, london, 10);
     graph.add_edge(london, paris, 5);
-
+	graph.remove_edge(london, paris);
+	graph.add_edge(paris, london, 500);
+	
+	std::cout << "Has edge paris-london: " << graph.has_edge(paris, london) << std::endl;
+	std::cout << "Has edge paris-zurich: " << graph.has_edge(paris, zurich) << std::endl;
     // Print vertex count
     std::cout << "Number of vertices: " << graph.vertex_count() << std::endl;
     std::cout << "Number of edges: " << graph.edge_count() << std::endl;
-
-    // Remove a vertex (currently stub)
-    graph.remove_vertex(paris);
-
+	
     // Print vertex count again
     std::cout << "Number of vertices after removal: " << graph.vertex_count() << std::endl;
-
+	
+	graph.print();
     return 0;
 }
